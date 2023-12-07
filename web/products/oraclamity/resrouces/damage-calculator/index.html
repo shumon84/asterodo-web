@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Oraclamity ダメージ計算機</title>
+    <link rel="icon" href="/web/products/oraclamity/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function(d) {
+            var config = {
+                    kitId: 'mnb8lko',
+                    scriptTimeout: 3000,
+                    async: true
+                },
+                h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+        })(document);
+    </script>
+</head>
+<body>
+<div class="setup">
+    <h1><img class="logo" src="/web/products/oraclamity/img/oraclamity_logo.svg" alt="Oraclamity"> ダメージ計算機</h1>
+    <div class="howto">
+        <p>使用するモンスターを選択してください。</p>
+    </div>
+    <form class="input" name="SetupForm">
+        <datalist id="monsters"></datalist>
+        <div class="player p1">
+            <label class="player-name">プレイヤー1
+                <input class="monster-select" type="text" list="monsters" name="PlayerA1">
+                <input class="monster-select" type="text" list="monsters" name="PlayerA2">
+                <input class="monster-select" type="text" list="monsters" name="PlayerA3">
+            </label>
+        </div>
+        <div class="player p2">
+            <label class="player-name">プレイヤー2
+                <input class="monster-select" type="text" list="monsters" name="PlayerB1">
+                <input class="monster-select" type="text" list="monsters" name="PlayerB2">
+                <input class="monster-select" type="text" list="monsters" name="PlayerB3">
+            </label>
+        </div>
+        <input class="start-button" type="button" value="対戦開始" name="StartButton" disabled>
+    </form>
+</div>
+<div class="app" hidden>
+</div>
+</body>
+</html>
+<script src="js/game.js"></script>
