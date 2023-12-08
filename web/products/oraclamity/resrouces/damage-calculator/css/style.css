@@ -130,22 +130,22 @@ h1 {
 
 .field.p1{
     position: relative;
-    bottom: 100px;
+    bottom: 0px;
 }
 
 .field.p2{
     position: relative;
-    top: 100px;
+    top: 0px;
 }
 
 .monster > img {
     position: relative;
-    width: 250px;
+    width: 200px;
     transition: all 0.1s 0s ease;
 }
 
 .monster > img.selected {
-    transform: translateY(-150px);
+    transform: translateY(-100px);
 }
 
 .status-board {
@@ -159,6 +159,59 @@ h1 {
 }
 
 .button-container img {
+    transition: all 0.05s 0s linear;
     display: block;
     width: 90px;
+}
+
+.button.disable {
+    opacity: 20%;
+}
+
+.button.clicking {
+    opacity: 20%;
+}
+
+.summary {
+    margin: auto;
+    padding-top: 20px;
+    width: 600px;
+    display: grid;
+    justify-content: center;
+    place-items: center;
+    grid-template-columns: repeat(6,1fr);
+    grid-template-rows: repeat(2,1fr);
+}
+
+.summary > * {
+    text-align: center;
+    vertical-align: middle;
+    width: 80%;
+    height: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: auto;
+    font-size: 30px;
+    font-weight: 1000;
+}
+
+
+.red {
+    background-image: url("../img/red.svg");
+}
+
+.green {
+    background-image: url("../img/green.svg");
+}
+
+.blue {
+    background-image: url("../img/blue.svg");
+}
+
+.white {
+    background-image: url("../img/white.svg");
+}
+
+.black {
+    background-image: url("../img/black.svg");
 }

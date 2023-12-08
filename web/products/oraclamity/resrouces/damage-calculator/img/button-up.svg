@@ -4,9 +4,17 @@
     <style>
       .cls-1 {
         fill: #61915e;
+      }
+
+      .cls-1, .cls-2 {
         stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #fff;
       }
     </style>
   </defs>
   <polygon class="cls-1" points="13.09 22.68 26.19 0 0 0 13.09 22.68"/>
+  <path class="cls-2" d="m12.42,4.68h1.36v7.32h-1.36v-7.32Zm-3.13,2.96h7.6v1.41h-7.6v-1.41Z"/>
 </svg>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Oraclamity ダメージ計算機</title>
-    <link rel="icon" href="/web/products/oraclamity/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/style.css">
     <script>
         (function(d) {
@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="setup">
-    <h1><img class="logo" src="/web/products/oraclamity/img/oraclamity_logo.svg" alt="Oraclamity"> ダメージ計算機</h1>
+    <h1><img class="logo" src="../../img/oraclamity_logo.svg" alt="Oraclamity"> ダメージ計算機</h1>
     <div class="howto">
         <p>使用するモンスターを選択してください。</p>
     </div>
@@ -28,15 +28,15 @@
             <div class="player-name">プレイヤー1</div>
             <div class="select-form">
                 <div class="monsters-select left">
-                    <img class="selected-monster" src="/web/products/oraclamity/img/card/small/backside_monster.png">
+                    <img class="selected-monster" src="../../img/card/small/backside_monster.png">
                     <input class="monster-select" type="text" list="monsters" name="PlayerA1">
                 </div>
                 <div class="monsters-select center">
-                    <img class="selected-monster" src="/web/products/oraclamity/img/card/small/backside_monster.png">
+                    <img class="selected-monster" src="../../img/card/small/backside_monster.png">
                     <input class="monster-select" type="text" list="monsters" name="PlayerA2">
                 </div>
                 <div class="monsters-select right">
-                    <img class="selected-monster" src="/web/products/oraclamity/img/card/small/backside_monster.png">
+                    <img class="selected-monster" src="../../img/card/small/backside_monster.png">
                     <input class="monster-select" type="text" list="monsters" name="PlayerA3">
                 </div>
             </div>
@@ -45,15 +45,15 @@
             <div class="player-name">プレイヤー2</div>
             <div class="select-form">
                 <div class="monsters-select left">
-                    <img class="selected-monster" src="/web/products/oraclamity/img/card/small/backside_monster.png">
+                    <img class="selected-monster" src="../../img/card/small/backside_monster.png">
                     <input class="monster-select" type="text" list="monsters" name="PlayerB1">
                 </div>
                 <div class="monsters-select center">
-                    <img class="selected-monster" src="/web/products/oraclamity/img/card/small/backside_monster.png">
+                    <img class="selected-monster" src="../../img/card/small/backside_monster.png">
                     <input class="monster-select" type="text" list="monsters" name="PlayerB2">
                 </div>
                 <div class="monsters-select right">
-                    <img class="selected-monster" src="/web/products/oraclamity/img/card/small/backside_monster.png">
+                    <img class="selected-monster" src="../../img/card/small/backside_monster.png">
                     <input class="monster-select" type="text" list="monsters" name="PlayerB3">
                 </div>
             </div>
@@ -68,45 +68,47 @@
         <div class="p1 monster right"><img></div>
     </div>
     <div class="calculator">
-        <div class="summary p1">
-            <div class="atk-action p1">
-                <div class="atk red p1"></div>
-                <div class="atk green p1"></div>
-                <div class="atk blue p1"></div>
-                <div class="atk white p1"></div>
-                <div class="atk black p1"></div>
+        <div class="summary p1 reverse">
+            <div class="atk action p1">
+                <img src="img/自技_物理.svg">
             </div>
-            <div class="satk-action p1">
-                <div class="satk red p1"></div>
-                <div class="satk green p1"></div>
-                <div class="satk blue p1"></div>
-                <div class="satk white p1"></div>
-                <div class="satk black p1"></div>
+            <div class="atk-summary red p1">0</div>
+            <div class="atk-summary blue p1">0</div>
+            <div class="atk-summary green p1">0</div>
+            <div class="atk-summary black p1">0</div>
+            <div class="atk-summary white p1">0</div>
+            <div class="satk action p1">
+                <img src="img/自技_魔法.svg">
             </div>
+            <div class="satk-summary red p1">0</div>
+            <div class="satk-summary blue p1">0</div>
+            <div class="satk-summary green p1">0</div>
+            <div class="satk-summary black p1">0</div>
+            <div class="satk-summary white p1">0</div>
         </div>
         <div class="status-board">
-            <div class="button-container p1 atk up reverse">
+            <div class="button-container p2 atk up reverse">
                 <img class="p2 atk up button" src="img/button-up.svg">
                 <img src="img/敵Atk.svg">
             </div>
-            <div class="button-container p1 satk up reverse">
+            <div class="button-container p2 satk up reverse">
                 <img class="p2 satk up button" src="img/button-up.svg">
                 <img src="img/敵S-Atk.svg">
             </div>
-            <div class="button-container p1 speed up reverse">
+            <div class="button-container p2 speed up reverse">
                 <img class="p2 speed up button" src="img/button-up.svg">
                 <img src="img/敵Speed.svg">
             </div>
-            <div class="button-container p2 speed down reverse">
-                <img class="p2 speed down button" src="img/button-down.svg">
+            <div class="button-container p1 speed down reverse">
+                <img class="p1 speed down button" src="img/button-down.svg">
                 <img src="img/自Speed.svg">
             </div>
-            <div class="button-container p2 satk down reverse">
-                <img class="p2 satk down button" src="img/button-down.svg">
+            <div class="button-container p1 satk down reverse">
+                <img class="p1 satk down button" src="img/button-down.svg">
                 <img src="img/自S-Atk.svg">
             </div>
-            <div class="button-container p2 atk down reverse">
-                <img class="p2 atk down button" src="img/button-down.svg">
+            <div class="button-container p1 atk down reverse">
+                <img class="p1 atk down button" src="img/button-down.svg">
                 <img src="img/自Atk.svg">
             </div>
             <div class="atk cube p2">
@@ -155,20 +157,22 @@
 
         </div>
         <div class="summary p2">
-            <div class="atk-action p2">
-                <div class="atk red p2"></div>
-                <div class="atk green p2"></div>
-                <div class="atk blue p2"></div>
-                <div class="atk white p2"></div>
-                <div class="atk black p2"></div>
+            <div class="atk action p2">
+                <img src="img/自技_物理.svg">
             </div>
-            <div class="satk-action p2">
-                <div class="satk red p2"></div>
-                <div class="satk green p2"></div>
-                <div class="satk blue p2"></div>
-                <div class="satk white p2"></div>
-                <div class="satk black p2"></div>
+            <div class="atk-summary red p2">0</div>
+            <div class="atk-summary blue p2">0</div>
+            <div class="atk-summary green p2">0</div>
+            <div class="atk-summary black p2">0</div>
+            <div class="atk-summary white p2">0</div>
+            <div class="satk action p2">
+                <img src="img/自技_魔法.svg">
             </div>
+            <div class="satk-summary red p2">0</div>
+            <div class="satk-summary blue p2">0</div>
+            <div class="satk-summary green p2">0</div>
+            <div class="satk-summary black p2">0</div>
+            <div class="satk-summary white p2">0</div>
         </div>
     </div>
     <div class="field p2">

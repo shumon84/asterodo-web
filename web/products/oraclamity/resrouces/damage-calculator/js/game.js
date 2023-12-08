@@ -1,3 +1,10 @@
+const ElementMap = {
+    "混沌": 0,
+    "幻想": 1,
+    "超常": 2,
+    "悪意": 3,
+    "神秘": 4
+}
 const SetupForm = document.SetupForm
 const StartButton = SetupForm.StartButton
 const monstersData = [
@@ -101,15 +108,12 @@ const monstersData = [
     {img: "monster-49.png", elm: "神秘", Atk: 2, SAtk: 0, Def: 2, SDef: 2, Speed: 0, name: "M-049 シャイニーリング"},
     {img: "monster-50.png", elm: "神秘", Atk: 3, SAtk: 0, Def: 1, SDef: 0, Speed: 0, name: "M-050 エターナル"},
 ]
-const cardImagePath = "/web/products/oraclamity/img/card/small/"
+const cardImagePath = "../../img/card/small/"
 monsterSelectList = SetupForm.querySelector("#monsters")
 let readyFormCount = 0;
 [...SetupForm.querySelectorAll(".monsters-select")].forEach(form => {
     const img = form.querySelector("img")
     const input = form.querySelector("input")
-
-    input.value = "M-002 ブレイズドラゴン"
-
     input.addEventListener("input", e => {
         const monster = monstersData.find(monster => monster.name === input.value)
         if (monster === undefined) {
@@ -127,7 +131,6 @@ let readyFormCount = 0;
     img.addEventListener("click", _ => {
         input.focus()
     })
-
 })
 
 // monstersData からモンスター名を抜き出して入力候補に追加する
@@ -164,31 +167,98 @@ SetupForm.addEventListener("input", e => {
 })
 
 function StartGame(playerAMonsters, playerBMonsters) {
-    // const playerAMonsterImages = [
-    //     document.querySelector(".p1.monster.left > img"),
-    //     document.querySelector(".p1.monster.center > img"),
-    //     document.querySelector(".p1.monster.right > img")
-    // ]
-    // const playerBMonsterImages = [
-    //     document.querySelector(".p2.monster.left > img"),
-    //     document.querySelector(".p2.monster.center > img"),
-    //     document.querySelector(".p2.monster.right > img")
-    // ]
-    //
-    // playerAMonsterImages[0].setAttribute("src",cardImagePath+playerAMonsters[0].img)
-    // playerAMonsterImages[1].setAttribute("src",cardImagePath+playerAMonsters[1].img)
-    // playerAMonsterImages[2].setAttribute("src",cardImagePath+playerAMonsters[2].img)
-    // playerBMonsterImages[0].setAttribute("src",cardImagePath+playerBMonsters[0].img)
-    // playerBMonsterImages[1].setAttribute("src",cardImagePath+playerBMonsters[1].img)
-    // playerBMonsterImages[2].setAttribute("src",cardImagePath+playerBMonsters[2].img)
-
     playersContext = [
         new PlayerContext(".p1", playerAMonsters),
         new PlayerContext(".p2", playerBMonsters)
     ]
 
-    const setup = document.querySelector(".setup").style.display = "none"
-    const app = document.querySelector(".app").style.display = "grid"
+    const setup = document.querySelector(".setup")
+    setup.style.display = "none"
+    const app = document.querySelector(".app")
+    app.style.display = "grid"
+
+    app.addEventListener("click", e => {
+        const p1 = playersContext[0].monsters[playersContext[0].currentIndex].data
+        const p2 = playersContext[1].monsters[playersContext[1].currentIndex].data
+        playersContext[0].Calculate(p2)
+        playersContext[1].Calculate(p1)
+    })
+    app.dispatchEvent(new Event("click"))
+}
+
+function Compatible(offence, defence) {
+    switch (offence) {
+        case 0:
+            switch (defence) {
+                case 0:
+                    return 0
+                case 1:
+                    return -1.5
+                case 2:
+                    return -1.5
+                case 3:
+                    return 1.5
+                case 4:
+                    return 1.5
+            }
+            break
+        case 1:
+            switch (defence) {
+                case 0:
+                    return 1.5
+                case 1:
+                    return 0
+                case 2:
+                    return 1.5
+                case 3:
+                    return 0
+                case 4:
+                    return -1.5
+            }
+            break
+        case 2:
+            switch (defence) {
+                case 0:
+                    return -1.5
+                case 1:
+                    return 1.5
+                case 2:
+                    return 0
+                case 3:
+                    return -1.5
+                case 4:
+                    return 1.5
+            }
+            break
+        case 3:
+            switch (defence) {
+                case 0:
+                    return 1.5
+                case 1:
+                    return 1.5
+                case 2:
+                    return -1.5
+                case 3:
+                    return 0
+                case 4:
+                    return -1.5
+            }
+            break
+        case 4:
+            switch (defence) {
+                case 0:
+                    return 0
+                case 1:
+                    return -1.5
+                case 2:
+                    return 1.5
+                case 3:
+                    return 1.5
+                case 4:
+                    return 0
+            }
+            break
+    }
 }
 
 class PlayerContext {
@@ -205,6 +275,28 @@ class PlayerContext {
             })
         })
         this.status = new Status(playerID)
+        this.summary = new Summary(playerID)
+    }
+
+    Calculate(enemy) {
+        const me = this.monsters[this.currentIndex].data
+        this.summary.atk.forEach((node, elm) => {
+            const statusDiff = me.Atk + this.status.Atk.value / 2 - enemy.Def
+            const bonus = (elm === ElementMap[me.elm]) ? 0.5 : 0
+            const weak = Compatible(elm, ElementMap[enemy.elm])
+            const damage = statusDiff + bonus + weak
+            const sign = damage > 0 ? "+" : damage < 0 ? "" : "±"
+            node.innerText = sign + damage
+        })
+        this.summary.satk.forEach((node, elm) => {
+            const statusDiff = me.SAtk + this.status.SAtk.value / 2 - enemy.SDef
+            const bonus = (elm === ElementMap[me.elm]) ? 0.5 : 0
+            const weak = Compatible(elm, ElementMap[enemy.elm])
+            const damage = statusDiff + bonus + weak
+            const sign = damage > 0 ? "+" : damage < 0 ? "" : "±"
+            node.innerText = sign + damage
+        })
+
     }
 }
 
@@ -220,18 +312,49 @@ class StatusCube {
     constructor(playerID, kind) {
         this.value = 0
         this.node = document.querySelector(playerID + kind + ".cube .cube-value")
+        this.upButton = document.querySelector(playerID + kind + ".up.button")
+        this.downButton = document.querySelector(playerID + kind + ".down.button")
+
         this.node.addEventListener("oraclamityUpdate", e => {
-            const sign = this.value > 0 ? "+" : this.value < 0 ? "-" : "±"
+            const sign = this.value > 0 ? "+" : this.value < 0 ? "" : "±"
             this.node.innerText = sign + (this.value / 2)
         })
+        this.upButton.addEventListener("click", e => {
+            if (this.upButton.classList.contains("disable")) {
+                return
+            }
+            this.upButton.classList.add("clicking")
+            setTimeout(() => {
+                this.upButton.classList.remove("clicking")
+            }, 50)
+            this.Up()
+        })
+        this.downButton.addEventListener("click", e => {
+            if (this.downButton.classList.contains("disable")) {
+                return
+            }
+            this.downButton.classList.add("clicking")
+            setTimeout(() => {
+                this.downButton.classList.remove("clicking")
+            }, 50)
+            this.Down()
+        })
         this.update()
-        const upButton = document.querySelector(playerID + kind + ".up.button")
-        const downButton = document.querySelector(playerID + kind + ".down.button")
-        upButton.addEventListener("click", e => this.Up())
-        downButton.addEventListener("click", e => this.Down())
     }
 
     update() {
+        if (4 <= this.value) {
+            this.value = 4
+            this.upButton.classList.add("disable")
+        } else {
+            this.upButton.classList.remove("disable")
+        }
+        if (this.value <= -4) {
+            this.value = -4
+            this.downButton.classList.add("disable")
+        } else {
+            this.downButton.classList.remove("disable")
+        }
         this.node.dispatchEvent(new Event("oraclamityUpdate"))
     }
 
@@ -245,3 +368,12 @@ class StatusCube {
         this.update()
     }
 }
+
+class Summary {
+    constructor(playerID) {
+        this.atk = [...document.querySelectorAll(playerID + ".atk-summary")]
+        this.satk = [...document.querySelectorAll(playerID + ".satk-summary")]
+    }
+}
+
+
