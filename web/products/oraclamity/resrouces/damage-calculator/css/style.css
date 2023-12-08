@@ -70,6 +70,7 @@ h1 {
     font-size: 25px;
     background-color: #3b4e51;
     border-radius: 10px;
+    transition: all 0.2s 0s ease;
 }
 
 .setup .start-button:disabled {
@@ -83,6 +84,7 @@ h1 {
 
 .app {
     max-width: 900px;
+    max-height: 1900px;
     height: 100vh;
     margin: auto auto;
     grid-auto-rows: 1fr 1fr 1fr;
@@ -97,7 +99,7 @@ h1 {
     place-items: center;
 }
 
-.field.p1 {
+.reverse {
     transform: rotate(180deg);
 }
 
@@ -106,30 +108,57 @@ h1 {
     top: 90px;
 }
 
-.cubes {
-    max-width: 800px;
-    margin: auto;
-    display: grid;
-    justify-content: center;
-    place-items: center;
-    grid-template-columns: repeat(6, 1fr);
-}
 
-.cubes .cube {
+.status-board .cube {
     width: 120px;
     height: 120px;
     background-image: url("../img/status-cube.svg");
 }
 
-.cubes .cube  {
+.status-board .cube  {
     transform: rotate(90deg);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.cubes .cube .cube-value {
+.status-board .cube .cube-value {
     position: relative;
     bottom: 1px;
     font-size: 40px;
+}
+
+.field.p1{
+    position: relative;
+    bottom: 100px;
+}
+
+.field.p2{
+    position: relative;
+    top: 100px;
+}
+
+.monster > img {
+    position: relative;
+    width: 250px;
+    transition: all 0.1s 0s ease;
+}
+
+.monster > img.selected {
+    transform: translateY(-150px);
+}
+
+.status-board {
+    max-width: 800px;
+    margin: auto;
+    display: grid;
+    justify-content: center;
+    place-items: center;
+    grid-template-columns: repeat(6,1fr);
+    grid-template-rows: repeat(3,1fr);
+}
+
+.button-container img {
+    display: block;
+    width: 90px;
 }

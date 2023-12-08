@@ -3,7 +3,16 @@ const StartButton = SetupForm.StartButton
 const monstersData = [
     {img: "monster-01.png", elm: "混沌", Atk: 3, SAtk: 0, Def: 1, SDef: 0, Speed: 2, name: "M-001 ジャベリンテイル"},
     {img: "monster-02.png", elm: "混沌", Atk: 2, SAtk: 2, Def: 0, SDef: 0, Speed: 2, name: "M-002 ブレイズドラゴン"},
-    {img: "monster-03.png", elm: "混沌", Atk: 2, SAtk: 0, Def: 2, SDef: 0, Speed: 2, name: "M-003 バーニングバシリスク"},
+    {
+        img: "monster-03.png",
+        elm: "混沌",
+        Atk: 2,
+        SAtk: 0,
+        Def: 2,
+        SDef: 0,
+        Speed: 2,
+        name: "M-003 バーニングバシリスク"
+    },
     {img: "monster-04.png", elm: "混沌", Atk: 1, SAtk: 0, Def: 0, SDef: 2, Speed: 3, name: "M-004 フレイムワイバーン"},
     {img: "monster-05.png", elm: "混沌", Atk: 2, SAtk: 0, Def: 0, SDef: 0, Speed: 3, name: "M-005 サンダーラプター"},
     {img: "monster-06.png", elm: "混沌", Atk: 3, SAtk: 0, Def: 1, SDef: 0, Speed: 2, name: "M-006 スピットファング"},
@@ -14,7 +23,16 @@ const monstersData = [
 
     {img: "monster-11.png", elm: "幻想", Atk: 2, SAtk: 2, Def: 0, SDef: 2, Speed: 0, name: "M-011 オーシャンタイタン"},
     {img: "monster-12.png", elm: "幻想", Atk: 0, SAtk: 3, Def: 1, SDef: 2, Speed: 0, name: "M-012 アバロンシール"},
-    {img: "monster-13.png", elm: "幻想", Atk: 0, SAtk: 1, Def: 2, SDef: 3, Speed: 0, name: "M-013 プロメテウスシャーク"},
+    {
+        img: "monster-13.png",
+        elm: "幻想",
+        Atk: 0,
+        SAtk: 1,
+        Def: 2,
+        SDef: 3,
+        Speed: 0,
+        name: "M-013 プロメテウスシャーク"
+    },
     {img: "monster-14.png", elm: "幻想", Atk: 0, SAtk: 1, Def: 0, SDef: 3, Speed: 1, name: "M-014 ドレッドノート"},
     {img: "monster-15.png", elm: "幻想", Atk: 0, SAtk: 2, Def: 0, SDef: 2, Speed: 2, name: "M-015 グラブクラブ"},
     {img: "monster-16.png", elm: "幻想", Atk: 2, SAtk: 1, Def: 1, SDef: 2, Speed: 0, name: "M-016 シーサーペント"},
@@ -42,16 +60,43 @@ const monstersData = [
     {img: "monster-36.png", elm: "悪意", Atk: 2, SAtk: 2, Def: 0, SDef: 0, Speed: 2, name: "M-036 ディープダーク"},
     {img: "monster-37.png", elm: "悪意", Atk: 0, SAtk: 3, Def: 0, SDef: 1, Speed: 1, name: "M-037 アンドロミラー"},
     {img: "monster-38.png", elm: "悪意", Atk: 0, SAtk: 3, Def: 2, SDef: 0, Speed: 1, name: "M-038 スペースクリスタル"},
-    {img: "monster-39.png", elm: "悪意", Atk: 0, SAtk: 2, Def: 0, SDef: 2, Speed: 2, name: "M-039 ホイールオブフォーチュン"},
+    {
+        img: "monster-39.png",
+        elm: "悪意",
+        Atk: 0,
+        SAtk: 2,
+        Def: 0,
+        SDef: 2,
+        Speed: 2,
+        name: "M-039 ホイールオブフォーチュン"
+    },
     {img: "monster-40.png", elm: "悪意", Atk: 0, SAtk: 3, Def: 0, SDef: 0, Speed: 3, name: "M-040 ラスティタワー"},
 
     {img: "monster-41.png", elm: "神秘", Atk: 3, SAtk: 0, Def: 2, SDef: 0, Speed: 0, name: "M-041 ディバインロード"},
     {img: "monster-42.png", elm: "神秘", Atk: 2, SAtk: 2, Def: 1, SDef: 1, Speed: 0, name: "M-042 グロリアスブレス"},
     {img: "monster-43.png", elm: "神秘", Atk: 3, SAtk: 0, Def: 3, SDef: 0, Speed: 0, name: "M-043 セラフィム"},
     {img: "monster-44.png", elm: "神秘", Atk: 2, SAtk: 0, Def: 1, SDef: 2, Speed: 1, name: "M-044 ハーモニーウイング"},
-    {img: "monster-45.png", elm: "神秘", Atk: 3, SAtk: 0, Def: 1, SDef: 0, Speed: 2, name: "M-045 ミスティックエンジェル"},
+    {
+        img: "monster-45.png",
+        elm: "神秘",
+        Atk: 3,
+        SAtk: 0,
+        Def: 1,
+        SDef: 0,
+        Speed: 2,
+        name: "M-045 ミスティックエンジェル"
+    },
     {img: "monster-46.png", elm: "神秘", Atk: 3, SAtk: 0, Def: 1, SDef: 1, Speed: 0, name: "M-046 ミスリルファイター"},
-    {img: "monster-47.png", elm: "神秘", Atk: 2, SAtk: 2, Def: 2, SDef: 0, Speed: 0, name: "M-047 セレスティアルグローリー"},
+    {
+        img: "monster-47.png",
+        elm: "神秘",
+        Atk: 2,
+        SAtk: 2,
+        Def: 2,
+        SDef: 0,
+        Speed: 0,
+        name: "M-047 セレスティアルグローリー"
+    },
     {img: "monster-48.png", elm: "神秘", Atk: 2, SAtk: 0, Def: 3, SDef: 0, Speed: 1, name: "M-048 アークエンジェル"},
     {img: "monster-49.png", elm: "神秘", Atk: 2, SAtk: 0, Def: 2, SDef: 2, Speed: 0, name: "M-049 シャイニーリング"},
     {img: "monster-50.png", elm: "神秘", Atk: 3, SAtk: 0, Def: 1, SDef: 0, Speed: 0, name: "M-050 エターナル"},
@@ -59,27 +104,27 @@ const monstersData = [
 const cardImagePath = "/web/products/oraclamity/img/card/small/"
 monsterSelectList = SetupForm.querySelector("#monsters")
 let readyFormCount = 0;
-[...SetupForm.querySelectorAll(".monsters-select")].forEach(form=>{
+[...SetupForm.querySelectorAll(".monsters-select")].forEach(form => {
     const img = form.querySelector("img")
     const input = form.querySelector("input")
 
     input.value = "M-002 ブレイズドラゴン"
 
-    input.addEventListener("input", e =>{
+    input.addEventListener("input", e => {
         const monster = monstersData.find(monster => monster.name === input.value)
         if (monster === undefined) {
-            img.src = cardImagePath+"backside_monster.png"
-        }else{
-            img.src = cardImagePath+monster.img
+            img.src = cardImagePath + "backside_monster.png"
+        } else {
+            img.src = cardImagePath + monster.img
         }
         console.log(monster)
     })
-    input.addEventListener("focus", _ =>{
+    input.addEventListener("focus", _ => {
         input.value = ""
         input.dispatchEvent(new Event("input"))
         SetupForm.dispatchEvent(new Event("input"))
     })
-    img.addEventListener("click", _ =>{
+    img.addEventListener("click", _ => {
         input.focus()
     })
 
@@ -106,7 +151,7 @@ SetupForm.addEventListener("input", e => {
         .map(input => input.value)
         .map(name => monstersData.find(monster => monster.name === name))
         .filter(monster => monster !== undefined)
-    if (playerAMonsters.length + playerBMonsters.length !== 6){
+    if (playerAMonsters.length + playerBMonsters.length !== 6) {
         StartButton.disabled = true
         return
     }
@@ -118,7 +163,7 @@ SetupForm.addEventListener("input", e => {
     StartButton.disabled = false
 })
 
-function StartGame(playerAMonsters, playerBMonsters){
+function StartGame(playerAMonsters, playerBMonsters) {
     // const playerAMonsterImages = [
     //     document.querySelector(".p1.monster.left > img"),
     //     document.querySelector(".p1.monster.center > img"),
@@ -138,8 +183,8 @@ function StartGame(playerAMonsters, playerBMonsters){
     // playerBMonsterImages[2].setAttribute("src",cardImagePath+playerBMonsters[2].img)
 
     playersContext = [
-        new PlayerContext(".p1",playerAMonsters),
-        new PlayerContext(".p2",playerBMonsters)
+        new PlayerContext(".p1", playerAMonsters),
+        new PlayerContext(".p2", playerBMonsters)
     ]
 
     const setup = document.querySelector(".setup").style.display = "none"
@@ -149,26 +194,54 @@ function StartGame(playerAMonsters, playerBMonsters){
 class PlayerContext {
     constructor(playerID, monsters) {
         this.currentIndex = 1;
-        this.monsters = [...document.querySelectorAll(playerID+".monster > img")]
-            .map((img, index) => ({data :monsters[index], img: img}))
-        this.monsters.forEach( monster=> monster.img.setAttribute("src", cardImagePath+monster.data.img))
+        this.monsters = [...document.querySelectorAll(playerID + ".monster > img")]
+            .map((img, index) => ({data: monsters[index], img: img}))
+        this.monsters.forEach((monster, index) => {
+            monster.img.setAttribute("src", cardImagePath + monster.data.img)
+            monster.img.addEventListener("click", e => {
+                this.monsters[this.currentIndex].img.classList.remove("selected")
+                this.currentIndex = index
+                monster.img.classList.add("selected")
+            })
+        })
         this.status = new Status(playerID)
     }
 }
 
 class Status {
     constructor(playerID) {
-        this.Atk = new StatusCube(playerID,".atk")
-        this.SAtk = new StatusCube(playerID,".satk")
-        this.Speed = new StatusCube(playerID,".speed")
+        this.Atk = new StatusCube(playerID, ".atk")
+        this.SAtk = new StatusCube(playerID, ".satk")
+        this.Speed = new StatusCube(playerID, ".speed")
     }
 }
 
 class StatusCube {
     constructor(playerID, kind) {
         this.value = 0
-        this.node = document.querySelector(playerID+kind+".cube .cube-value")
-        const sign = this.value > 0? "+":this.value<0?"-":"±"
-        this.node.innerText = sign+this.value
+        this.node = document.querySelector(playerID + kind + ".cube .cube-value")
+        this.node.addEventListener("oraclamityUpdate", e => {
+            const sign = this.value > 0 ? "+" : this.value < 0 ? "-" : "±"
+            this.node.innerText = sign + (this.value / 2)
+        })
+        this.update()
+        const upButton = document.querySelector(playerID + kind + ".up.button")
+        const downButton = document.querySelector(playerID + kind + ".down.button")
+        upButton.addEventListener("click", e => this.Up())
+        downButton.addEventListener("click", e => this.Down())
+    }
+
+    update() {
+        this.node.dispatchEvent(new Event("oraclamityUpdate"))
+    }
+
+    Up() {
+        this.value += 1
+        this.update()
+    }
+
+    Down() {
+        this.value -= 1
+        this.update()
     }
 }

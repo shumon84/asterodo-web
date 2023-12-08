@@ -62,9 +62,9 @@
     </form>
 </div>
 <div class="app">
-    <div class="field p1">
+    <div class="field p1 reverse">
         <div class="p1 monster left"><img></div>
-        <div class="p1 monster center"><img></div>
+        <div class="p1 monster center"><img class="selected"></div>
         <div class="p1 monster right"><img></div>
     </div>
     <div class="calculator">
@@ -85,32 +85,74 @@
             </div>
         </div>
         <div class="status-board">
-            <div class="buttons p1">
-                <div class="button "></div>
+            <div class="button-container p1 atk up reverse">
+                <img class="p2 atk up button" src="img/button-up.svg">
+                <img src="img/敵Atk.svg">
             </div>
-            <div class="cubes">
-                <div class="atk cube p2">
-                    <div class="cube-value"></div>
-                </div>
-                <div class="satk cube p2">
-                    <div class="cube-value"></div>
-                </div>
-                <div class="speed cube p2">
-                    <div class="cube-value"></div>
-                </div>
-                <div class="speed cube p1">
-                    <div class="cube-value"></div>
-                </div>
-                <div class="satk cube p1">
-                    <div class="cube-value"></div>
-                </div>
-                <div class="atk cube p1">
-                    <div class="cube-value"></div>
-                </div>
+            <div class="button-container p1 satk up reverse">
+                <img class="p2 satk up button" src="img/button-up.svg">
+                <img src="img/敵S-Atk.svg">
             </div>
-            <div class="buttons p2">
+            <div class="button-container p1 speed up reverse">
+                <img class="p2 speed up button" src="img/button-up.svg">
+                <img src="img/敵Speed.svg">
+            </div>
+            <div class="button-container p2 speed down reverse">
+                <img class="p2 speed down button" src="img/button-down.svg">
+                <img src="img/自Speed.svg">
+            </div>
+            <div class="button-container p2 satk down reverse">
+                <img class="p2 satk down button" src="img/button-down.svg">
+                <img src="img/自S-Atk.svg">
+            </div>
+            <div class="button-container p2 atk down reverse">
+                <img class="p2 atk down button" src="img/button-down.svg">
+                <img src="img/自Atk.svg">
+            </div>
+            <div class="atk cube p2">
+                    <div class="cube-value"></div>
+                </div>
+            <div class="satk cube p2">
+                    <div class="cube-value"></div>
+                </div>
+            <div class="speed cube p2">
+                    <div class="cube-value"></div>
+                </div>
+            <div class="speed cube p1">
+                    <div class="cube-value"></div>
+                </div>
+            <div class="satk cube p1">
+                    <div class="cube-value"></div>
+                </div>
+            <div class="atk cube p1">
+                    <div class="cube-value"></div>
+                </div>
 
+            <div class="button-container p2 atk down">
+                <img class="p2 atk down button" src="img/button-down.svg">
+                <img src="img/自Atk.svg">
             </div>
+            <div class="button-container p2 satk down">
+                <img class="p2 satk down button" src="img/button-down.svg">
+                <img src="img/自S-Atk.svg">
+            </div>
+            <div class="button-container p2 speed down">
+                <img class="p2 speed down button" src="img/button-down.svg">
+                <img src="img/自Speed.svg">
+            </div>
+            <div class="button-container p1 speed up">
+                <img class="p1 speed up button" src="img/button-up.svg">
+                <img src="img/敵Speed.svg">
+            </div>
+            <div class="button-container p1 satk up">
+                <img class="p1 satk up button" src="img/button-up.svg">
+                <img src="img/敵S-Atk.svg">
+            </div>
+            <div class="button-container p1 atk up">
+                <img class="p1 atk up button" src="img/button-up.svg">
+                <img src="img/敵Atk.svg">
+            </div>
+
         </div>
         <div class="summary p2">
             <div class="atk-action p2">
@@ -131,7 +173,7 @@
     </div>
     <div class="field p2">
         <div class="p2 monster left"><img></div>
-        <div class="p2 monster center"><img></div>
+        <div class="p2 monster center"><img class="selected"></div>
         <div class="p2 monster right"><img></div>
     </div>
 </div>
