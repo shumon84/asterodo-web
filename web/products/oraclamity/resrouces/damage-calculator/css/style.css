@@ -3,7 +3,8 @@ body {
     color: white;
     font-family: "fot-tsukubrdgothic-std", sans-serif;
     font-weight: 400;
-    font-style: normal;;
+    font-style: normal;
+    height: 100%;
 }
 
 h1 {
@@ -20,6 +21,115 @@ h1 {
     font-size: 40px
 }
 
-.setup .player-name {
-    margin-right: 20px;
+.setup > .input {
+    margin: auto
+}
+
+.setup > .input > .player {
+    margin: 100px auto;
+    display: grid;
+    justify-content: center;
+    place-items: center;
+    grid-template-columns: 240px 600px;
+}
+
+.setup > .input > .player > .select-form {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 200px 200px 200px;
+}
+
+.setup > .input > .player > .select-form > .monsters-select > * {
+    display: block;
+    margin: 15px auto;
+    width: 178px;
+}
+
+.setup > .input > .player > .select-form > .monsters-select > .monster-select {
+    font-family: "fot-tsukubrdgothic-std", sans-serif;
+    font-weight: 400;
+    font-style: normal;;
+
+    color: #333;
+
+    width: 80%;
+    padding: 5px 10px;
+    border: 2px solid #618287;
+    border-radius: 10px;
+    background: #c5ccd3;
+    line-height: 1;
+}
+
+.setup .start-button {
+    font-family: "fot-tsukubrdgothic-std", sans-serif;
+    font-weight: 400;
+    font-style: normal;;
+    color: #fff;
+    width: 200px;
+    height: 90px;
+    font-size: 25px;
+    background-color: #3b4e51;
+    border-radius: 10px;
+}
+
+.setup .start-button:disabled {
+    color: #666;
+    background-color: rgba(59, 78, 81, 0.50);
+}
+
+.setup .start-button:enabled {
+    box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.70);
+}
+
+.app {
+    max-width: 900px;
+    height: 100vh;
+    margin: auto auto;
+    grid-auto-rows: 1fr 1fr 1fr;
+    align-items: center;
+    display: none;
+}
+
+.field {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    place-items: center;
+}
+
+.field.p1 {
+    transform: rotate(180deg);
+}
+
+.field .monster {
+    position: relative;
+    top: 90px;
+}
+
+.cubes {
+    max-width: 800px;
+    margin: auto;
+    display: grid;
+    justify-content: center;
+    place-items: center;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.cubes .cube {
+    width: 120px;
+    height: 120px;
+    background-image: url("../img/status-cube.svg");
+}
+
+.cubes .cube  {
+    transform: rotate(90deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cubes .cube .cube-value {
+    position: relative;
+    bottom: 1px;
+    font-size: 40px;
 }

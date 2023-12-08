@@ -25,23 +25,115 @@
     <form class="input" name="SetupForm">
         <datalist id="monsters"></datalist>
         <div class="player p1">
-            <label class="player-name">プレイヤー1
-                <input class="monster-select" type="text" list="monsters" name="PlayerA1">
-                <input class="monster-select" type="text" list="monsters" name="PlayerA2">
-                <input class="monster-select" type="text" list="monsters" name="PlayerA3">
-            </label>
+            <div class="player-name">プレイヤー1</div>
+            <div class="select-form">
+                <div class="monsters-select left">
+                    <img class="selected-monster" src="/web/products/oraclamity/img/card/small/backside_monster.png">
+                    <input class="monster-select" type="text" list="monsters" name="PlayerA1">
+                </div>
+                <div class="monsters-select center">
+                    <img class="selected-monster" src="/web/products/oraclamity/img/card/small/backside_monster.png">
+                    <input class="monster-select" type="text" list="monsters" name="PlayerA2">
+                </div>
+                <div class="monsters-select right">
+                    <img class="selected-monster" src="/web/products/oraclamity/img/card/small/backside_monster.png">
+                    <input class="monster-select" type="text" list="monsters" name="PlayerA3">
+                </div>
+            </div>
         </div>
         <div class="player p2">
-            <label class="player-name">プレイヤー2
-                <input class="monster-select" type="text" list="monsters" name="PlayerB1">
-                <input class="monster-select" type="text" list="monsters" name="PlayerB2">
-                <input class="monster-select" type="text" list="monsters" name="PlayerB3">
-            </label>
+            <div class="player-name">プレイヤー2</div>
+            <div class="select-form">
+                <div class="monsters-select left">
+                    <img class="selected-monster" src="/web/products/oraclamity/img/card/small/backside_monster.png">
+                    <input class="monster-select" type="text" list="monsters" name="PlayerB1">
+                </div>
+                <div class="monsters-select center">
+                    <img class="selected-monster" src="/web/products/oraclamity/img/card/small/backside_monster.png">
+                    <input class="monster-select" type="text" list="monsters" name="PlayerB2">
+                </div>
+                <div class="monsters-select right">
+                    <img class="selected-monster" src="/web/products/oraclamity/img/card/small/backside_monster.png">
+                    <input class="monster-select" type="text" list="monsters" name="PlayerB3">
+                </div>
+            </div>
         </div>
-        <input class="start-button" type="button" value="対戦開始" name="StartButton" disabled>
+        <input class="start-button shiny-btn" type="button" value="対戦開始" name="StartButton" disabled>
     </form>
 </div>
-<div class="app" hidden>
+<div class="app">
+    <div class="field p1">
+        <div class="p1 monster left"><img></div>
+        <div class="p1 monster center"><img></div>
+        <div class="p1 monster right"><img></div>
+    </div>
+    <div class="calculator">
+        <div class="summary p1">
+            <div class="atk-action p1">
+                <div class="atk red p1"></div>
+                <div class="atk green p1"></div>
+                <div class="atk blue p1"></div>
+                <div class="atk white p1"></div>
+                <div class="atk black p1"></div>
+            </div>
+            <div class="satk-action p1">
+                <div class="satk red p1"></div>
+                <div class="satk green p1"></div>
+                <div class="satk blue p1"></div>
+                <div class="satk white p1"></div>
+                <div class="satk black p1"></div>
+            </div>
+        </div>
+        <div class="status-board">
+            <div class="buttons p1">
+                <div class="button "></div>
+            </div>
+            <div class="cubes">
+                <div class="atk cube p2">
+                    <div class="cube-value"></div>
+                </div>
+                <div class="satk cube p2">
+                    <div class="cube-value"></div>
+                </div>
+                <div class="speed cube p2">
+                    <div class="cube-value"></div>
+                </div>
+                <div class="speed cube p1">
+                    <div class="cube-value"></div>
+                </div>
+                <div class="satk cube p1">
+                    <div class="cube-value"></div>
+                </div>
+                <div class="atk cube p1">
+                    <div class="cube-value"></div>
+                </div>
+            </div>
+            <div class="buttons p2">
+
+            </div>
+        </div>
+        <div class="summary p2">
+            <div class="atk-action p2">
+                <div class="atk red p2"></div>
+                <div class="atk green p2"></div>
+                <div class="atk blue p2"></div>
+                <div class="atk white p2"></div>
+                <div class="atk black p2"></div>
+            </div>
+            <div class="satk-action p2">
+                <div class="satk red p2"></div>
+                <div class="satk green p2"></div>
+                <div class="satk blue p2"></div>
+                <div class="satk white p2"></div>
+                <div class="satk black p2"></div>
+            </div>
+        </div>
+    </div>
+    <div class="field p2">
+        <div class="p2 monster left"><img></div>
+        <div class="p2 monster center"><img></div>
+        <div class="p2 monster right"><img></div>
+    </div>
 </div>
 </body>
 </html>
