@@ -1,3 +1,21 @@
+function setupWindowScale() {
+    const heightScale = window.innerHeight / 900
+    const widthScale = window.innerWidth / 1900
+    const scale = heightScale > widthScale ? heightScale : widthScale
+    const scaleNode = document.querySelector("head > meta:nth-child(3)")
+    scaleNode.setAttribute("content","width=device-width,initial-scale="+scale+",maximum-scale="+scale)
+}
+setupWindowScale()
+
+//let clickEvent = "click";
+// if (window.ontouchstart === null) {
+//     clickEvent = "touchend";
+// } else{
+//     clickEvent = "click";
+// }
+
+//document.addEventListener("dblclick", e=> e.preventDefault())
+
 const ElementMap = {
     "混沌": 0,
     "幻想": 1,
@@ -109,8 +127,7 @@ const monstersData = [
     {img: "monster-50.png", elm: "神秘", Atk: 3, SAtk: 0, Def: 1, SDef: 0, Speed: 0, name: "M-050 エターナル"},
 ]
 const cardImagePath = "../../img/card/small/"
-monsterSelectList = SetupForm.querySelector("#monsters")
-let readyFormCount = 0;
+monsterSelectList = SetupForm.querySelector("#monsters");
 [...SetupForm.querySelectorAll(".monsters-select")].forEach(form => {
     const img = form.querySelector("img")
     const input = form.querySelector("input")
@@ -123,11 +140,11 @@ let readyFormCount = 0;
         }
         console.log(monster)
     })
-    input.addEventListener("focus", _ => {
-        input.value = ""
-        input.dispatchEvent(new Event("input"))
-        SetupForm.dispatchEvent(new Event("input"))
-    })
+    // input.addEventListener("focus", _ => {
+    //     input.value = ""
+    //     input.dispatchEvent(new Event("input"))
+    //     SetupForm.dispatchEvent(new Event("input"))
+    // })
     img.addEventListener("click", _ => {
         input.focus()
     })
