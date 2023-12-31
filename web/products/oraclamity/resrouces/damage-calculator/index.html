@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Oraclamity ダメージ計算機</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function(d) {
+            var config = {
+                    kitId: 'mnb8lko',
+                    scriptTimeout: 3000,
+                    async: true
+                },
+                h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+        })(document);
+    </script>
+</head>
+<body>
+<div class="setup">
+    <h1><img class="logo" src="../../img/oraclamity_logo.svg" alt="Oraclamity"> ダメージ計算機</h1>
+    <div class="howto">
+        <p>使用するモンスターを選択してください。</p>
+    </div>
+    <form class="input" name="SetupForm">
+        <datalist id="monsters"></datalist>
+        <div class="player p1">
+            <div class="player-name">プレイヤー1</div>
+            <div class="select-form">
+                <div class="monsters-select left">
+                    <img class="selected-monster" src="../../img/card/small/backside_monster.png">
+                    <input class="monster-select" type="text" list="monsters" name="PlayerA1">
+                </div>
+                <div class="monsters-select center">
+                    <img class="selected-monster" src="../../img/card/small/backside_monster.png">
+                    <input class="monster-select" type="text" list="monsters" name="PlayerA2">
+                </div>
+                <div class="monsters-select right">
+                    <img class="selected-monster" src="../../img/card/small/backside_monster.png">
+                    <input class="monster-select" type="text" list="monsters" name="PlayerA3">
+                </div>
+            </div>
+        </div>
+        <div class="player p2">
+            <div class="player-name">プレイヤー2</div>
+            <div class="select-form">
+                <div class="monsters-select left">
+                    <img class="selected-monster" src="../../img/card/small/backside_monster.png">
+                    <input class="monster-select" type="text" list="monsters" name="PlayerB1">
+                </div>
+                <div class="monsters-select center">
+                    <img class="selected-monster" src="../../img/card/small/backside_monster.png">
+                    <input class="monster-select" type="text" list="monsters" name="PlayerB2">
+                </div>
+                <div class="monsters-select right">
+                    <img class="selected-monster" src="../../img/card/small/backside_monster.png">
+                    <input class="monster-select" type="text" list="monsters" name="PlayerB3">
+                </div>
+            </div>
+        </div>
+        <input class="start-button shiny-btn" type="button" value="対戦開始" name="StartButton" disabled>
+    </form>
+</div>
+<div class="app">
+    <div class="field p1 reverse">
+        <div class="p1 monster left"><img></div>
+        <div class="p1 monster center"><img class="selected"></div>
+        <div class="p1 monster right"><img></div>
+    </div>
+    <div class="calculator">
+        <div class="summary p1 reverse">
+            <div class="atk action p1">
+                <img src="img/自技_物理.svg">
+            </div>
+            <div class="atk-summary red p1">0</div>
+            <div class="atk-summary blue p1">0</div>
+            <div class="atk-summary green p1">0</div>
+            <div class="atk-summary black p1">0</div>
+            <div class="atk-summary white p1">0</div>
+            <div class="satk action p1">
+                <img src="img/自技_魔法.svg">
+            </div>
+            <div class="satk-summary red p1">0</div>
+            <div class="satk-summary blue p1">0</div>
+            <div class="satk-summary green p1">0</div>
+            <div class="satk-summary black p1">0</div>
+            <div class="satk-summary white p1">0</div>
+        </div>
+        <div class="status-board">
+            <div class="button-container p2 atk up reverse">
+                <img class="p2 atk up button" src="img/button-up.svg">
+                <img src="img/敵Atk.svg">
+            </div>
+            <div class="button-container p2 satk up reverse">
+                <img class="p2 satk up button" src="img/button-up.svg">
+                <img src="img/敵S-Atk.svg">
+            </div>
+            <div class="button-container p2 speed up reverse">
+                <img class="p2 speed up button" src="img/button-up.svg">
+                <img src="img/敵Speed.svg">
+            </div>
+            <div class="button-container p1 speed down reverse">
+                <img class="p1 speed down button" src="img/button-down.svg">
+                <img src="img/自Speed.svg">
+            </div>
+            <div class="button-container p1 satk down reverse">
+                <img class="p1 satk down button" src="img/button-down.svg">
+                <img src="img/自S-Atk.svg">
+            </div>
+            <div class="button-container p1 atk down reverse">
+                <img class="p1 atk down button" src="img/button-down.svg">
+                <img src="img/自Atk.svg">
+            </div>
+            <div class="atk cube p2">
+                    <div class="cube-value"></div>
+                </div>
+            <div class="satk cube p2">
+                    <div class="cube-value"></div>
+                </div>
+            <div class="speed cube p2">
+                    <div class="cube-value"></div>
+                </div>
+            <div class="speed cube p1">
+                    <div class="cube-value"></div>
+                </div>
+            <div class="satk cube p1">
+                    <div class="cube-value"></div>
+                </div>
+            <div class="atk cube p1">
+                    <div class="cube-value"></div>
+                </div>
+
+            <div class="button-container p2 atk down">
+                <img class="p2 atk down button" src="img/button-down.svg">
+                <img src="img/自Atk.svg">
+            </div>
+            <div class="button-container p2 satk down">
+                <img class="p2 satk down button" src="img/button-down.svg">
+                <img src="img/自S-Atk.svg">
+            </div>
+            <div class="button-container p2 speed down">
+                <img class="p2 speed down button" src="img/button-down.svg">
+                <img src="img/自Speed.svg">
+            </div>
+            <div class="button-container p1 speed up">
+                <img class="p1 speed up button" src="img/button-up.svg">
+                <img src="img/敵Speed.svg">
+            </div>
+            <div class="button-container p1 satk up">
+                <img class="p1 satk up button" src="img/button-up.svg">
+                <img src="img/敵S-Atk.svg">
+            </div>
+            <div class="button-container p1 atk up">
+                <img class="p1 atk up button" src="img/button-up.svg">
+                <img src="img/敵Atk.svg">
+            </div>
+
+        </div>
+        <div class="summary p2">
+            <div class="atk action p2">
+                <img src="img/自技_物理.svg">
+            </div>
+            <div class="atk-summary red p2">0</div>
+            <div class="atk-summary blue p2">0</div>
+            <div class="atk-summary green p2">0</div>
+            <div class="atk-summary black p2">0</div>
+            <div class="atk-summary white p2">0</div>
+            <div class="satk action p2">
+                <img src="img/自技_魔法.svg">
+            </div>
+            <div class="satk-summary red p2">0</div>
+            <div class="satk-summary blue p2">0</div>
+            <div class="satk-summary green p2">0</div>
+            <div class="satk-summary black p2">0</div>
+            <div class="satk-summary white p2">0</div>
+        </div>
+    </div>
+    <div class="field p2">
+        <div class="p2 monster left"><img></div>
+        <div class="p2 monster center"><img class="selected"></div>
+        <div class="p2 monster right"><img></div>
+    </div>
+</div>
+</body>
+</html>
+<script src="js/game.js"></script>
