@@ -2,6 +2,6 @@
 
 ## ブラウザ上での確認方法
 ```shell
-python3 -m http.server 8000
+docker compose up -d
 ```
-上記を実行し、 http://localhost:8000 にアクセスする
+上記を実行し、 http://localhost:8000
