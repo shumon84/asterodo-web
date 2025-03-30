@@ -15,7 +15,7 @@ resource "aws_s3_bucket" "iac_code" {
 # バケットのバージョニング設定
 resource "aws_s3_bucket_versioning" "iac_code" {
   bucket = aws_s3_bucket.iac_code.id
-  
+
   versioning_configuration {
     status = "Enabled"
   }
