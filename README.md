@@ -32,3 +32,18 @@ GitHub Actionsを使用するには、以下のSecretsをリポジトリに設�
 
 - `AWS_ACCESS_KEY_ID`: AWSアクセスキーID
 - `AWS_SECRET_ACCESS_KEY`: AWSシークレットアクセスキー
+
+### Terraform CI用のIAMユーザーの設定
+
+1. 初回のTerraform実行後、以下のコマンドでアクセスキー情報を取得します：
+```shell
+cd infra
+terraform output terraform_ci_access_key_id
+terraform output terraform_ci_secret_access_key
+```
+
+2. 取得したアクセスキー情報をGitHub Secretsに設定します：
+   - リポジトリの「Settings」→「Secrets and variables」→「Actions」
+   - 「New repository secret」をクリックして、上記の値を設定
+
+これにより、Terraform CIは必要最小限の権限でAWSリソースを管理できます。
