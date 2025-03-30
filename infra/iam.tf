@@ -19,7 +19,7 @@ resource "aws_iam_user" "terraform_ci" {
 resource "aws_iam_policy" "terraform_ci" {
   name        = "${var.project_name}-terraform-ci-policy"
   description = "Terraform CIがterraform planとapplyを実行するために必要な権限"
-  
+
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
