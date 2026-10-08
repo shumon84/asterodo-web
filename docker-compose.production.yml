@@ -1,0 +1,19 @@
+# VPS で動かすときの設定。ホストのポートは開けず、VPS の Traefik から転送を受ける（shumon84/vps-infra）
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.asterodo.rule=Host(`asterodo.com`)
+      - traefik.http.routers.asterodo.entrypoints=websecure
+      - traefik.http.services.asterodo.loadbalancer.server.port=80
+    networks:
+      - traefik
+
+networks:
+  # VPS の Traefik のネットワーク（shumon84/vps-infra が作る）
+  traefik:
+    external: true
