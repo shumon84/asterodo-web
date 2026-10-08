@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # 本番用の設定（docker-compose.production.yml）でビルドして起動し、
+  # VPS と同じ形の Traefik から、ラベルどおりに HTTPS で転送されることを確かめる。
+  # 証明書は取らない（Traefik の仮の証明書で受け、curl -k で確かめない）
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Traefik を起動する（VPS の shumon84/vps-infra の公開の入口と同じ形）
+        run: |
+          docker network create traefik
+          docker run -d --name traefik --network traefik -p 127.0.0.1:443:443 \
+            -v /var/run/docker.sock:/var/run/docker.sock:ro \
+            traefik:v3.7 \
+            --providers.docker.exposedbydefault=false \
+            --providers.docker.network=traefik \
+            --entrypoints.websecure.address=:443 \
+            --entrypoints.websecure.http.tls=true
+
+      - name: ビルドして起動する
+        run: docker compose -f docker-compose.production.yml up -d --build --wait
+
+      - name: 転送できることを確かめる
+        run: |
+          get() { curl --silent --show-error --fail -k --resolve "$1:443:127.0.0.1" "https://$1$2"; }
+          for i in $(seq 10); do get asterodo.com / -o /dev/null && break; sleep 1; done
+          get asterodo.com / | grep -i '<title>'
+          # web/ の下のファイルも配れる（日本語の名前も）
+          get asterodo.com /css/top.css -o /dev/null
+          get asterodo.com /products/oraclamity/resources/damage-calculator/ | grep -i '<html'
+          get asterodo.com "/products/oraclamity/img/icon/$(printf '%s' '毒.svg' | jq -sRr @uri)" -o /dev/null
+          # ほかの名前では受けない
+          test "$(curl --silent -k --resolve other.example:443:127.0.0.1 -o /dev/null -w '%{http_code}' https://other.example/)" = 404
+
+      - name: ログを出して止める
+        if: always()
+        run: |
+          docker compose -f docker-compose.production.yml logs
+          docker logs traefik
+          docker compose -f docker-compose.production.yml down
