@@ -5,3 +5,14 @@
 docker compose up -d
 ```
 上記を実行し、 http://localhost:8000
+
+## VPS での動かし方
+VPS では Traefik（[shumon84/vps-infra](https://github.com/shumon84/vps-infra)）がリバースプロキシとして動いていて、HTTPS の証明書も取る。このサイトはホストのポートを開けず、`docker-compose.production.yml` のラベルで Traefik から https://asterodo.com への転送を受ける。
+
+```shell
+git pull
+docker compose -f docker-compose.production.yml up -d --build
+```
+
+- 先に VPS で Traefik を動かしておく（`traefik` ネットワークがないと起動できない）
+- `asterodo.com` の A レコードは VPS の公開アドレスに向ける

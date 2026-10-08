@@ -1,7 +1,4 @@
-FROM gcr.io/distroless/python3-debian12
+# web/ を配る nginx のイメージ
+FROM nginx:1.30-alpine
 
-WORKDIR /web
-
-COPY ./web .
-
-ENTRYPOINT ["python3", "-m", "http.server", "80"]
+COPY ./web /usr/share/nginx/html
