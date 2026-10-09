@@ -15,4 +15,5 @@ docker compose -f docker-compose.production.yml up -d --build
 ```
 
 - 先に VPS で Traefik を動かしておく（`traefik` ネットワークがないと起動できない）
-- `asterodo.com` の A レコードは VPS の公開アドレスに向ける
+- `asterodo.com` の A レコードは VPS の公開アドレスに向ける（DNS はムームードメイン）
+- 証明書は、Traefik が HTTP（80 番）で取る（ラベルの `certresolver=letsencrypt-http`）。DNS が Route 53 にないため

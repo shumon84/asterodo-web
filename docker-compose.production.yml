@@ -9,6 +9,8 @@ services:
       - traefik.enable=true
       - traefik.http.routers.asterodo.rule=Host(`asterodo.com`)
       - traefik.http.routers.asterodo.entrypoints=websecure
+      # asterodo.com の DNS は Route 53 にない（ムームードメイン）ので、証明書は HTTP で取る（vps-infra の letsencrypt-http）
+      - traefik.http.routers.asterodo.tls.certresolver=letsencrypt-http
       - traefik.http.services.asterodo.loadbalancer.server.port=80
     networks:
       - traefik
