@@ -1,0 +1,17 @@
+# CI で、本番と同じ形の Traefik の後ろで動かすときに足す（.github/workflows/ci.yml）。
+# 本番では、同じラベルを vps-infra が services.yaml から付ける（証明書は CI では取らない）
+services:
+  app:
+    build: .
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.asterodo-web.rule=Host(`asterodo.com`)
+      - traefik.http.routers.asterodo-web.entrypoints=websecure
+      - traefik.http.services.asterodo-web.loadbalancer.server.port=80
+    networks:
+      - default
+      - traefik
+
+networks:
+  traefik:
+    external: true

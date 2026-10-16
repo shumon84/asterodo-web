@@ -1,0 +1,7 @@
+# 本番環境（VPS）での起動のしかた。イメージの /vps-infra/compose.yaml に入れ、VPS では vps-infra（shumon84/vps-infra）が使う。
+# どこで開くか（asterodo.com・公開する・証明書は HTTP で取る）と Traefik へのつなぎ方は、vps-infra の services.yaml で決める
+services:
+  app:
+    # IMAGE_TAG には、vps-infra の services.yaml の tag（書かなければ main）が入る。前の版に戻すときに使う
+    image: ghcr.io/shumon84/asterodo-web:${IMAGE_TAG:-main}
+    restart: unless-stopped
