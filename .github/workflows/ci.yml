@@ -13,12 +13,14 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # 本番用の設定（docker-compose.production.yml）でビルドして起動し、
-  # VPS と同じ形の Traefik から、ラベルどおりに HTTPS で転送されることを確かめる。
-  # 証明書は取らない（Traefik の仮の証明書で受け、curl -k で確かめない）
+  # 本番の起動のしかた（compose.yaml）でビルドして起動し、VPS と同じ形の Traefik から、
+  # vps-infra が付けるのと同じラベル（compose.ci.yaml）で HTTPS で転送されることを確かめる。
+  # 証明書は取らない（Traefik の仮の証明書で受け、curl -k で確かめない）。入れ替えは vps-infra の CI で確かめている
   production:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      COMPOSE_FILE: compose.yaml:compose.ci.yaml
     steps:
       - uses: actions/checkout@v7
 
@@ -33,8 +35,8 @@ jobs:
             --entrypoints.websecure.address=:443 \
             --entrypoints.websecure.http.tls=true
 
-      - name: ビルドして起動する
-        run: docker compose -f docker-compose.production.yml up -d --build --wait
+      - name: ビルドして起動する（ヘルスチェックが通るまで待つ）
+        run: docker compose up -d --build --wait
 
       - name: 転送できることを確かめる
         run: |
@@ -48,9 +50,37 @@ jobs:
           # ほかの名前では受けない
           test "$(curl --silent -k --resolve other.example:443:127.0.0.1 -o /dev/null -w '%{http_code}' https://other.example/)" = 404
 
+      - name: イメージに起動のしかた（/vps-infra/compose.yaml）が入っている
+        run: |
+          docker run --rm --entrypoint cat ghcr.io/shumon84/asterodo-web:main /vps-infra/compose.yaml | diff - compose.yaml
+
       - name: ログを出して止める
         if: always()
         run: |
-          docker compose -f docker-compose.production.yml logs
+          docker compose logs
           docker logs traefik
-          docker compose -f docker-compose.production.yml down
+          docker compose down
+
+  # main に入ったら、本番用のイメージを GHCR に置く。VPS の vps-infra のタイマーがこれを見つけて入れ替える（README.md）
+  publish:
+    needs: [production]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: GHCR にログインする
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+      - name: イメージを作って置く（main と、コミットごとの sha-xxxxxxx）
+        run: |
+          image=ghcr.io/${{ github.repository }}
+          docker build \
+            --label org.opencontainers.image.source=https://github.com/${{ github.repository }} \
+            --label org.opencontainers.image.revision=${{ github.sha }} \
+            -t "$image:main" -t "$image:sha-${GITHUB_SHA::7}" .
+          docker push --all-tags "$image"
